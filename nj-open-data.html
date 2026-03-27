@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your AI Has Never Seen Your Data — AIntropy</title>
+  <meta name="description" content="85 million government records. 23 agencies. 8 formats. Every frontier model you know sees none of it. Here is why — and what we did about it." />
+  <meta name="author" content="AIntropy" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Your AI Has Never Seen Your Data" />
+  <meta property="og:description" content="85 million government records. 23 agencies. 8 formats. Every frontier model you know sees none of it." />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="AIntropy" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      background-color: #0a0a0a;
+      color: #e5e5e5;
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Prose container */
+    .prose {
+      max-width: 680px;
+      margin: 0 auto;
+      font-size: 17px;
+      line-height: 1.75;
+      color: #d4d4d4;
+    }
+
+    .prose h2 {
+      font-size: 24px;
+      font-weight: 700;
+      color: #ffffff;
+      margin: 56px 0 20px;
+      letter-spacing: -0.3px;
+    }
+
+    .prose p {
+      margin-bottom: 24px;
+    }
+
+    .prose strong {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    /* Pull quote */
+    .pull-quote {
+      border-left: 3px solid #00d4ff;
+      padding: 12px 24px;
+      margin: 40px 0;
+      font-size: 20px;
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 1.5;
+      background: rgba(0, 212, 255, 0.04);
+      border-radius: 0 8px 8px 0;
+    }
+
+    /* TL;DR box */
+    .tldr-box {
+      background: rgba(0, 212, 255, 0.06);
+      border: 1px solid rgba(0, 212, 255, 0.2);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-bottom: 48px;
+    }
+
+    /* Callout */
+    .callout {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin: 32px 0;
+      font-size: 15px;
+      color: #a3a3a3;
+    }
+
+    /* Stat number */
+    .stat-num {
+      font-size: 36px;
+      font-weight: 800;
+      color: #00d4ff;
+      display: block;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    /* Silo node animations */
+    @keyframes node-pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    @keyframes line-pulse {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 0.2; }
+    }
+    .silo-node { animation: node-pulse 2.5s ease-in-out infinite; }
+    .silo-line { animation: line-pulse 2.5s ease-in-out infinite; }
+
+    /* Demo placeholder */
+    .demo-placeholder {
+      background: rgba(0,212,255,0.04);
+      border: 2px dashed rgba(0,212,255,0.2);
+      border-radius: 12px;
+      padding: 48px;
+      text-align: center;
+      color: #555;
+      font-size: 14px;
+      margin: 32px 0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Nav -->
+  <nav style="border-bottom: 1px solid #1a1a1a; padding: 16px 32px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; background: rgba(10,10,10,0.95); backdrop-filter: blur(8px); z-index: 50;">
+    <a href="/index.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
+      <img src="/public/logo.png" alt="AIntropy" style="height: 28px;" onerror="this.style.display='none'" />
+      <span style="color: #ffffff; font-weight: 700; font-size: 16px;">AIntropy</span>
+    </a>
+    <a href="/blog.html" style="color: #a3a3a3; font-size: 14px; text-decoration: none;">← All posts</a>
+  </nav>
+
+  <!-- Hero -->
+  <div style="background: linear-gradient(180deg, #0d1117 0%, #0a0a0a 100%); padding: 80px 24px 64px; text-align: center; border-bottom: 1px solid #1a1a1a;">
+    <div style="max-width: 720px; margin: 0 auto;">
+      <div style="display: inline-block; background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.3); color: #00d4ff; font-size: 12px; font-weight: 600; letter-spacing: 1px; padding: 4px 14px; border-radius: 20px; margin-bottom: 24px; text-transform: uppercase;">
+        Product
+      </div>
+      <h1 style="font-size: clamp(32px, 6vw, 52px); font-weight: 800; color: #ffffff; line-height: 1.15; letter-spacing: -1px; margin: 0 0 20px;">
+        Your AI Has Never Seen Your Data
+      </h1>
+      <p style="font-size: 18px; color: #a3a3a3; line-height: 1.6; margin: 0 0 32px;">
+        85 million government records. 23 agencies. 8 formats. Every frontier model you know sees none of it. Here is why — and what we built.
+      </p>
+      <div style="display: flex; align-items: center; justify-content: center; gap: 16px; font-size: 14px; color: #555;">
+        <span>AIntropy</span>
+        <span>·</span>
+        <span>March 2026</span>
+        <span>·</span>
+        <span>8 min read</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Article body -->
+  <article style="padding: 64px 24px 96px;">
+    <div class="prose">
+
+      <!-- TL;DR -->
+      <div class="tldr-box">
+        <div style="font-size: 11px; font-weight: 700; color: #00d4ff; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px;">TL;DR</div>
+        <div style="font-size: 15px; color: #d4d4d4; line-height: 1.7;">
+          New Jersey's open data portal holds 85 million records across 23 agencies in 8+ formats. GPT, Gemini, and Claude cannot answer a single question that crosses agency lines — not because they are bad models, but because this data was never in their training set and never will be. We built Kurious to fix this. It answers in seconds.
+        </div>
+      </div>
+
+      <!-- Section 1 -->
+      <h2>The data landscape no one talks about</h2>
+
+      <p>
+        New Jersey has one of the most comprehensive open data portals in the United States. Over <strong>85 million records</strong> spanning pensions, corrections, public utilities, education, healthcare, transportation, and more. Maintained by 23 government agencies. Stored across 789 data sources in spreadsheets, PDFs, JSON files, images, ZIPs, and more.
+      </p>
+
+      <p>
+        It is all publicly available. It has always been publicly available. And yet, if you ask any frontier AI model a question that requires connecting two of those agencies — say, comparing pension liability data to education budget allocations — you will get one of three responses: a confident hallucination, an admission of ignorance, or a redirection to "please consult official sources."
+      </p>
+
+      <p>
+        The data was always there. The AI was just blind to it.
+      </p>
+
+      <!-- Silo visual -->
+      <div style="margin: 48px 0; padding: 32px 16px; background: rgba(13,17,23,0.8); border: 1px solid #1e1e1e; border-radius: 16px;">
+        <div style="text-align: center; font-size: 13px; color: #555; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">23 Isolated Agency Silos</div>
+        <svg viewBox="0 0 880 420" width="100%" style="max-width: 100%;">
+          <defs>
+            <filter id="glow">
+              <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+              <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+          <!-- Agency clusters — 4 rows of 5/6 -->
+          <g>
+            <!-- Row 1 -->
+            <g class="silo-node">
+              <circle cx="80" cy="70" r="28" fill="rgba(255,107,107,0.12)" stroke="#ff6b6b" stroke-width="1.5" filter="url(#glow)"/>
+              <circle cx="65" cy="58" r="4" fill="#ff6b6b" opacity="0.9"/>
+              <circle cx="92" cy="55" r="4" fill="#ff6b6b" opacity="0.9"/>
+              <circle cx="80" cy="85" r="4" fill="#ff6b6b" opacity="0.9"/>
+              <line x1="65" y1="58" x2="92" y2="55" class="silo-line" stroke="#ff6b6b" stroke-width="1"/>
+              <line x1="65" y1="58" x2="80" y2="85" class="silo-line" stroke="#ff6b6b" stroke-width="1"/>
+              <line x1="92" y1="55" x2="80" y2="85" class="silo-line" stroke="#ff6b6b" stroke-width="1"/>
+              <text x="80" y="108" text-anchor="middle" font-size="10" fill="#ff6b6b" font-weight="600">Health</text>
+            </g>
+            <g class="silo-node" style="animation-delay: 0.3s">
+              <circle cx="220" cy="70" r="28" fill="rgba(78,205,196,0.12)" stroke="#4ecdc4" stroke-width="1.5" filter="url(#glow)"/>
+              <circle cx="205" cy="58" r="4" fill="#4ecdc4" opacity="0.9"/>
+              <circle cx="232" cy="55" r="4" fill="#4ecdc4" opacity="0.9"/>
+              <circle cx="220" cy="85" r="4" fill="#4ecdc4" opacity="0.9"/>
+              <circle cx="210" cy="78" r="3.5" fill="#4ecdc4" opacity="0.7"/>
+              <line x1="205" y1="58" x2="232" y2="55" class="silo-line" stroke="#4ecdc4" stroke-width="1"/>
+              <line x1="205" y1="58" x2="220" y2="85" class="silo-line" stroke="#4ecdc4" stroke-width="1"/>
+              <text x="220" y="108" text-anchor="middle" font-size="10" fill="#4ecdc4" font-weight="600">Education</text>
+            </g>
+            <g class="silo-node" style="animation-delay: 0.6s">
+              <circle cx="360" cy="70" r="28" fill="rgba(69,183,209,0.12)" stroke="#45b7d1" stroke-width="1.5" filter="url(#glow)"/>
+              <circle cx="345" cy="58" r="4" fill="#45b7d1" opacity="0.9"/>
+              <circle cx="372" cy="60" r="4" fill="#45b7d1" opacity="0.9"/>
+              <circle cx="358" cy="82" r="4" fill="#45b7d1" opacity="0.9"/>
+              <line x1="345" y1="58" x2="372" y2="60" class="silo-line" stroke="#45b7d1" stroke-width="1"/>
+              <line x1="345" y1="58" x2="358" y2="82" class="silo-line" stroke="#45b7d1" stroke-width="1"/>
+              <text x="360" y="108" text-anchor="middle" font-size="10" fill="#45b7d1" font-weight="600">Transport</text>
+            </g>
+            <g class="silo-node" style="animation-delay: 0.9s">
+              <circle cx="500" cy="70" r="28" fill="rgba(249,202,36,0.12)" stroke="#f9ca24" stroke-width="1.5" filter="url(#glow)"/>
+              <circle cx="485" cy="58" r="4" fill="#f9ca24" opacity="0.9"/>
+              <circle cx="512" cy="60" r="4" fill="#f9ca24" opacity="0.9"/>
+              <circle cx="498" cy="84" r="4" fill="#f9ca24" opacity="0.9"/>
+              <circle cx="510" cy="78" r="3.5" fill="#f9ca24" opacity="0.7"/>
+              <line x1="485" y1="58" x2="512" y2="60" class="silo-line" stroke="#f9ca24" stroke-width="1"/>
+              <line x1="485" y1="58" x2="498" y2="84" class="silo-line" stroke="#f9ca24" stroke-width="1"/>
+              <text x="500" y="108" text-anchor="middle" font-size="10" fill="#f9ca24" font-weight="600">Treasury</text>
+            </g>
+            <g class="silo-node" style="animation-delay: 1.2s">
+              <circle cx="640" cy="70" r="28" fill="rgba(108,92,231,0.12)" stroke="#6c5ce7" stroke-width="1.5" filter="url(#glow)"/>
+              <circle cx="625" cy="58" r="4" fill="#6c5ce7" opacity="0.9"/>
+              <circle cx="652" cy="60" r="4" fill="#6c5ce7" opacity="0.9"/>
+              <circle cx="638" cy="84" r="4" fill="#6c5ce7" opacity="0.9"/>
+              <line x1="625" y1="58" x2="652" y2="60" class="silo-line" stroke="#6c5ce7" stroke-width="1"/>
+              <line x1="625" y1="58" x2="638" y2="84" class="silo-line" stroke="#6c5ce7" stroke-width="1"/>
+              <text x="640" y="108" text-anchor="middle" font-size="10" fill="#6c5ce7" font-weight="600">Justice</text>
+            </g>
+            <g class="silo-node" style="animation-delay: 1.5s">
+              <circle cx="800" cy="70" r="28" fill="rgba(162,155,254,0.12)" stroke="#a29bfe" stroke-width="1.5" filter="url(#glow)"/>
+              <circle cx="785" cy="58" r="4" fill="#a29bfe" opacity="0.9"/>
+              <circle cx="812" cy="60" r="4" fill="#a29bfe" opacity="0.9"/>
+              <circle cx="800" cy="85" r="4" fill="#a29bfe" opacity="0.9"/>
+              <line x1="785" y1="58" x2="812" y2="60" class="silo-line" stroke="#a29bfe" stroke-width="1"/>
+              <line x1="785" y1="58" x2="800" y2="85" class="silo-line" stroke="#a29bfe" stroke-width="1"/>
+              <text x="800" y="108" text-anchor="middle" font-size="10" fill="#a29bfe" font-weight="600">Corrections</text>
+            </g>
+
+            <!-- Row 2 -->
+            <g class="silo-node" style="animation-delay: 0.2s">
+              <circle cx="80" cy="210" r="28" fill="rgba(255,139,148,0.12)" stroke="#ff8b94" stroke-width="1.5" filter="url(#glow)"/>
+              <circle cx="65" cy="198" r="4" fill="#ff8b94" opacity="0.9"/>
+              <circle cx="92" cy="200" r="4" fill="#ff8b94" opacity="0.9"/>
+              <circle cx="78" cy="224" r="4" fill="#ff8b94" opacity="0.9"/>
+              <line x1="65" y1="198" x2="92" y2="200" class="silo-line" stroke="#ff8b94" stroke-width="1"/>
+              <line x1="65" y1="198" x2="78" y2="224" class="silo-line" stroke="#ff8b94" stroke-width="1"/>
+              <text x="80" y="248" text-anchor="middle" font-size="10" fill="#ff8b94" font-weight="600">Environment</text>
+            </g>
+            <g class="silo-node" style="animation-delay: 0.5s">
+              <circle cx="220" cy="210" r="28" fill="rgba(149,225,211,0.12)" stroke="#95e1d3" stroke-width="1.5" filter="url(#glow)"/>
+              <circle cx="205" cy="198" r="4" fill="#95e1d3" opacity="0.9"/>
+              <circle cx="232" cy="200" r="4" fill="#95e1d3" opacity="0.9"/>
+              <circle cx="220" cy="225" r="4" fill="#95e1d3" opacity="0.9"/>
+              <line x1="205" y1="198" x2="232" y2="200" class="silo-line" stroke="#95e1d3" stroke-width="1"/>
+              <line x1="205" y1="198" x2="220" y2="225" class="silo-line" stroke="#95e1d3" stroke-width="1"/>
+              <text x="220" y="248" text-anchor="middle" font-size="10" fill="#95e1d3" font-weight="600">Labor</text>
+            </g>
+            <g class="silo-node" style="animation-delay: 0.8s">
+              <circle cx="360" cy="210" r="28" fill="rgba(254,202,87,0.12)" stroke="#feca57" stroke-width="1.5" filter="url(#glow)"/>
+              <circle cx="345" cy="198" r="4" fill="#feca57" opacity="0.9"/>
+              <circle cx="372" cy="200" r="4" fill="#feca57" opacity="0.9"/>
+              <circle cx="358" cy="224" r="4" fill="#feca57" opacity="0.9"/>
+              <circle cx="368" cy="215" r="3.5" fill="#feca57" opacity="0.7"/>
+              <line x1="345" y1="198" x2="372" y2="200" class="silo-line" stroke="#feca57" stroke-width="1"/>
+              <line x1="345" y1="198" x2="358" y2="224" class="silo-line" stroke="#feca57" stroke-width="1"/>
+              <text x="360" y="248" text-anchor="middle" font-size="10" fill="#feca57" font-weight="600">Agriculture</text>
+            </g>
+            <g class="silo-node" style="animation-delay: 1.1s">
+              <circle cx="500" cy="210" r="28" fill="rgba(72,219,251,0.12)" stroke="#48dbfb" stroke-width="1.5" filter="url(#glow)"/>
+              <circle cx="485" cy="198" r="4" fill="#48dbfb" opacity="0.9"/>
+              <circle cx="512" cy="200" r="4" fill="#48dbfb" opacity="0.9"/>
+              <circle cx="498" cy="224" r="4" fill="#48dbfb" opacity="0.9"/>
+              <line x1="485" y1="198" x2="512" y2="200" class="silo-line" stroke="#48dbfb" stroke-width="1"/>
+              <line x1="485" y1="198" x2="498" y2="224" class="silo-line" stroke="#48dbfb" stroke-width="1"/>
+              <text x="500" y="248" text-anchor="middle" font-size="10" fill="#48dbfb" font-weight="600">Human Svcs</text>
+            </g>
+            <g class="silo-node" style="animation-delay: 1.4s">
+              <circle cx="640" cy="210" r="28" fill="rgba(255,159,243,0.12)" stroke="#ff9ff3" stroke-width="1.5" filter="url(#glow)"/>
+              <circle cx="625" cy="198" r="4" fill="#ff9ff3" opacity="0.9"/>
+              <circle cx="652" cy="200" r="4" fill="#ff9ff3" opacity="0.9"/>
+              <circle cx="638" cy="224" r="4" fill="#ff9ff3" opacity="0.9"/>
+              <line x1="625" y1="198" x2="652" y2="200" class="silo-line" stroke="#ff9ff3" stroke-width="1"/>
+              <line x1="625" y1="198" x2="638" y2="224" class="silo-line" stroke="#ff9ff3" stroke-width="1"/>
+              <text x="640" y="248" text-anchor="middle" font-size="10" fill="#ff9ff3" font-weight="600">Public Safety</text>
+            </g>
+            <g class="silo-node" style="animation-delay: 1.7s">
+              <circle cx="800" cy="210" r="28" fill="rgba(84,160,255,0.12)" stroke="#54a0ff" stroke-width="1.5" filter="url(#glow)"/>
+              <circle cx="785" cy="198" r="4" fill="#54a0ff" opacity="0.9"/>
+              <circle cx="812" cy="200" r="4" fill="#54a0ff" opacity="0.9"/>
+              <circle cx="800" cy="225" r="4" fill="#54a0ff" opacity="0.9"/>
+              <line x1="785" y1="198" x2="812" y2="200" class="silo-line" stroke="#54a0ff" stroke-width="1"/>
+              <line x1="785" y1="198" x2="800" y2="225" class="silo-line" stroke="#54a0ff" stroke-width="1"/>
+              <text x="800" y="248" text-anchor="middle" font-size="10" fill="#54a0ff" font-weight="600">Veterans</text>
+            </g>
+
+            <!-- Row 3 -->
+            <g class="silo-node" style="animation-delay: 0.4s">
+              <circle cx="150" cy="340" r="28" fill="rgba(238,90,111,0.12)" stroke="#ee5a6f" stroke-width="1.5" filter="url(#glow)"/>
+              <circle cx="135" cy="328" r="4" fill="#ee5a6f" opacity="0.9"/>
+              <circle cx="162" cy="330" r="4" fill="#ee5a6f" opacity="0.9"/>
+              <circle cx="148" cy="354" r="4" fill="#ee5a6f" opacity="0.9"/>
+              <line x1="135" y1="328" x2="162" y2="330" class="silo-line" stroke="#ee5a6f" stroke-width="1"/>
+              <line x1="135" y1="328" x2="148" y2="354" class="silo-line" stroke="#ee5a6f" stroke-width="1"/>
+              <text x="150" y="378" text-anchor="middle" font-size="10" fill="#ee5a6f" font-weight="600">Banking</text>
+            </g>
+            <g class="silo-node" style="animation-delay: 0.7s">
+              <circle cx="300" cy="340" r="28" fill="rgba(255,99,72,0.12)" stroke="#ff6348" stroke-width="1.5" filter="url(#glow)"/>
+              <circle cx="285" cy="328" r="4" fill="#ff6348" opacity="0.9"/>
+              <circle cx="312" cy="330" r="4" fill="#ff6348" opacity="0.9"/>
+              <circle cx="298" cy="354" r="4" fill="#ff6348" opacity="0.9"/>
+              <line x1="285" y1="328" x2="312" y2="330" class="silo-line" stroke="#ff6348" stroke-width="1"/>
+              <line x1="285" y1="328" x2="298" y2="354" class="silo-line" stroke="#ff6348" stroke-width="1"/>
+              <text x="300" y="378" text-anchor="middle" font-size="10" fill="#ff6348" font-weight="600">Children</text>
+            </g>
+            <g class="silo-node" style="animation-delay: 1.0s">
+              <circle cx="450" cy="340" r="28" fill="rgba(46,213,115,0.12)" stroke="#2ed573" stroke-width="1.5" filter="url(#glow)"/>
+              <circle cx="435" cy="328" r="4" fill="#2ed573" opacity="0.9"/>
+              <circle cx="462" cy="330" r="4" fill="#2ed573" opacity="0.9"/>
+              <circle cx="448" cy="354" r="4" fill="#2ed573" opacity="0.9"/>
+              <circle cx="458" cy="344" r="3.5" fill="#2ed573" opacity="0.7"/>
+              <line x1="435" y1="328" x2="462" y2="330" class="silo-line" stroke="#2ed573" stroke-width="1"/>
+              <line x1="435" y1="328" x2="448" y2="354" class="silo-line" stroke="#2ed573" stroke-width="1"/>
+              <text x="450" y="378" text-anchor="middle" font-size="10" fill="#2ed573" font-weight="600">Community</text>
+            </g>
+            <g class="silo-node" style="animation-delay: 1.3s">
+              <circle cx="600" cy="340" r="28" fill="rgba(255,165,2,0.12)" stroke="#ffa502" stroke-width="1.5" filter="url(#glow)"/>
+              <circle cx="585" cy="328" r="4" fill="#ffa502" opacity="0.9"/>
+              <circle cx="612" cy="330" r="4" fill="#ffa502" opacity="0.9"/>
+              <circle cx="598" cy="354" r="4" fill="#ffa502" opacity="0.9"/>
+              <line x1="585" y1="328" x2="612" y2="330" class="silo-line" stroke="#ffa502" stroke-width="1"/>
+              <line x1="585" y1="328" x2="598" y2="354" class="silo-line" stroke="#ffa502" stroke-width="1"/>
+              <text x="600" y="378" text-anchor="middle" font-size="10" fill="#ffa502" font-weight="600">Insurance</text>
+            </g>
+            <g class="silo-node" style="animation-delay: 1.6s">
+              <circle cx="750" cy="340" r="28" fill="rgba(43,203,186,0.12)" stroke="#2bcbba" stroke-width="1.5" filter="url(#glow)"/>
+              <circle cx="735" cy="328" r="4" fill="#2bcbba" opacity="0.9"/>
+              <circle cx="762" cy="330" r="4" fill="#2bcbba" opacity="0.9"/>
+              <circle cx="748" cy="354" r="4" fill="#2bcbba" opacity="0.9"/>
+              <line x1="735" y1="328" x2="762" y2="330" class="silo-line" stroke="#2bcbba" stroke-width="1"/>
+              <line x1="735" y1="328" x2="748" y2="354" class="silo-line" stroke="#2bcbba" stroke-width="1"/>
+              <text x="750" y="378" text-anchor="middle" font-size="10" fill="#2bcbba" font-weight="600">Economic Dev</text>
+            </g>
+
+            <!-- Missing connections — dashed red X marks between clusters -->
+            <g opacity="0.25">
+              <line x1="108" y1="70" x2="192" y2="70" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,8"/>
+              <text x="150" y="65" text-anchor="middle" font-size="12" fill="#ef4444">✕</text>
+              <line x1="248" y1="70" x2="332" y2="70" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,8"/>
+              <text x="290" y="65" text-anchor="middle" font-size="12" fill="#ef4444">✕</text>
+              <line x1="388" y1="70" x2="472" y2="70" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,8"/>
+              <text x="430" y="65" text-anchor="middle" font-size="12" fill="#ef4444">✕</text>
+              <line x1="528" y1="70" x2="612" y2="70" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,8"/>
+              <text x="570" y="65" text-anchor="middle" font-size="12" fill="#ef4444">✕</text>
+              <line x1="668" y1="70" x2="772" y2="70" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,8"/>
+              <text x="720" y="65" text-anchor="middle" font-size="12" fill="#ef4444">✕</text>
+            </g>
+          </g>
+          <text x="440" y="412" text-anchor="middle" font-size="12" fill="#555" font-style="italic">Each cluster is an isolated agency. The dots have never connected.</text>
+        </svg>
+      </div>
+
+      <p>
+        This is not a New Jersey problem. It is the default state of institutional data everywhere. Governments, hospitals, enterprises — all of them sitting on massive, fragmented data landscapes that no AI system has ever been able to navigate. Not because the data is bad. Because the systems were built in isolation, and AI was never trained to bridge them.
+      </p>
+
+      <!-- Pull quote 1 -->
+      <div class="pull-quote">
+        "The data was never the problem. Perception was."
+      </div>
+
+      <!-- Section 2 -->
+      <h2>Why frontier models cannot help</h2>
+
+      <p>
+        When people say "frontier AI," they mean the best models available: GPT-4o, Gemini Ultra, Claude 3.5. These are remarkable systems. They can write code, summarize legal documents, reason through complex problems, and carry on nuanced conversations. But they share a fundamental constraint that never gets talked about.
+      </p>
+
+      <p>
+        They were trained on the internet. And your data — your organization's data, your government's data — was not on it.
+      </p>
+
+      <p>
+        NJ Open Data contains <strong>23,000+ PDFs packed with embedded images</strong>, tables, charts, and scanned documents. It contains spreadsheets with inconsistent schemas across agencies. It contains ZIP archives containing files in formats that overlap but do not align. No frontier model was trained on any of this. And even if you tried to pass this data to them through retrieval-augmented generation, traditional RAG systems fail on exactly the scenarios where the answer requires understanding multiple formats across multiple sources simultaneously.
+      </p>
+
+      <!-- Why LLMs Fail visual -->
+      <div style="margin: 48px 0; border: 1px solid #1e1e1e; border-radius: 16px; overflow: hidden;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr;">
+          <!-- Without -->
+          <div style="padding: 28px; background: rgba(239,68,68,0.04); border-right: 1px solid #1e1e1e;">
+            <div style="font-size: 11px; font-weight: 700; color: #ef4444; letter-spacing: 1px; text-align: center; margin-bottom: 20px; text-transform: uppercase;">Frontier LLMs</div>
+            <div style="display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 16px;">
+              <div style="padding: 8px 4px; background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.2); border-radius: 8px; text-align: center; font-size: 11px; color: #ef4444; font-weight: 600;">PDF ✕</div>
+              <div style="padding: 8px 4px; background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.2); border-radius: 8px; text-align: center; font-size: 11px; color: #ef4444; font-weight: 600;">CSV ✕</div>
+              <div style="padding: 8px 4px; background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.2); border-radius: 8px; text-align: center; font-size: 11px; color: #ef4444; font-weight: 600;">JSON ✕</div>
+              <div style="padding: 8px 4px; background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.2); border-radius: 8px; text-align: center; font-size: 11px; color: #ef4444; font-weight: 600;">XLSX ✕</div>
+              <div style="padding: 8px 4px; background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.2); border-radius: 8px; text-align: center; font-size: 11px; color: #ef4444; font-weight: 600;">JPEG ✕</div>
+              <div style="padding: 8px 4px; background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.2); border-radius: 8px; text-align: center; font-size: 11px; color: #ef4444; font-weight: 600;">DOC ✕</div>
+            </div>
+            <div style="padding: 12px; background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.25); border-radius: 8px; text-align: center; font-size: 12px; color: #ef4444;">
+              ❓ Incomplete and inaccurate
+            </div>
+          </div>
+          <!-- With Kurious -->
+          <div style="padding: 28px; background: rgba(0,212,255,0.04);">
+            <div style="font-size: 11px; font-weight: 700; color: #00d4ff; letter-spacing: 1px; text-align: center; margin-bottom: 20px; text-transform: uppercase;">With Kurious</div>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 16px;">
+              <span style="padding: 6px 12px; background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.3); border-radius: 20px; font-size: 11px; color: #00d4ff; font-weight: 600;">PDF ✓</span>
+              <span style="padding: 6px 12px; background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.3); border-radius: 20px; font-size: 11px; color: #00d4ff; font-weight: 600;">CSV ✓</span>
+              <span style="padding: 6px 12px; background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.3); border-radius: 20px; font-size: 11px; color: #00d4ff; font-weight: 600;">JSON ✓</span>
+              <span style="padding: 6px 12px; background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.3); border-radius: 20px; font-size: 11px; color: #00d4ff; font-weight: 600;">XLSX ✓</span>
+              <span style="padding: 6px 12px; background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.3); border-radius: 20px; font-size: 11px; color: #00d4ff; font-weight: 600;">JPEG ✓</span>
+              <span style="padding: 6px 12px; background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.3); border-radius: 20px; font-size: 11px; color: #00d4ff; font-weight: 600;">DOC ✓</span>
+            </div>
+            <div style="padding: 12px; background: rgba(0,212,255,0.08); border: 1px solid rgba(0,212,255,0.3); border-radius: 8px; text-align: center; font-size: 12px; color: #00d4ff; font-weight: 600;">
+              ✓ Complete answer in seconds
+            </div>
+          </div>
+        </div>
+        <div style="padding: 14px; text-align: center; font-size: 12px; color: #555; font-style: italic; border-top: 1px solid #1e1e1e;">
+          The data was always there. Kurious just connects it all.
+        </div>
+      </div>
+
+      <p>
+        We tested this ourselves. Take a question like: "Which New Jersey townships have the most employees with terminal leave benefits?" Answering it correctly requires crossing HR filings, payroll records, and benefit disclosures across agencies that have never been designed to talk to each other. We ran this through GPT-4o, Gemini Ultra, and Claude 3.5. Every one of them failed — not with a clear error, but with a confident, plausible, incorrect answer.
+      </p>
+
+      <!-- Section 3 -->
+      <h2>Introducing Kurious</h2>
+
+      <p>
+        We built Kurious to solve exactly this problem. Not as a wrapper around an existing model. Not as a prompt-engineering trick. As a fundamentally different approach to how AI reads and reasons over heterogeneous, real-world data.
+      </p>
+
+      <!-- Feature cards -->
+      <div style="display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin: 40px 0;">
+        <div style="padding: 20px; background: rgba(0,212,255,0.04); border: 1px solid rgba(0,212,255,0.15); border-radius: 12px;">
+          <div style="font-size: 28px; margin-bottom: 12px;">🧠</div>
+          <div style="font-size: 13px; font-weight: 700; color: #ffffff; margin-bottom: 8px;">Natively multimodal</div>
+          <div style="font-size: 12px; color: #a3a3a3; line-height: 1.6;">PDF, CSV, JSON, JPEG, XLSX, video. All formats, one engine. Nothing gets left behind.</div>
+        </div>
+        <div style="padding: 20px; background: rgba(0,212,255,0.04); border: 1px solid rgba(0,212,255,0.15); border-radius: 12px;">
+          <div style="font-size: 28px; margin-bottom: 12px;">🔗</div>
+          <div style="font-size: 13px; font-weight: 700; color: #ffffff; margin-bottom: 8px;">Cross-silo reasoning</div>
+          <div style="font-size: 12px; color: #a3a3a3; line-height: 1.6;">Connects pension data to education budgets to policy documents in a single query.</div>
+        </div>
+        <div style="padding: 20px; background: rgba(0,212,255,0.04); border: 1px solid rgba(0,212,255,0.15); border-radius: 12px;">
+          <div style="font-size: 28px; margin-bottom: 12px;">⚡</div>
+          <div style="font-size: 13px; font-weight: 700; color: #ffffff; margin-bottom: 8px;">Answers in seconds</div>
+          <div style="font-size: 12px; color: #a3a3a3; line-height: 1.6;">No training. No fine-tuning. Connect your data and go live in days, not months.</div>
+        </div>
+      </div>
+
+      <!-- Section 4 -->
+      <h2>What it looks like in practice</h2>
+
+      <p>
+        We deployed Kurious on NJ Open Data. The entire portal — 85 million records, 789 data sources, 23 agencies, 8+ formats — indexed and queryable in plain language.
+      </p>
+
+      <!-- Demo video -->
+      <div style="margin: 40px 0; border-radius: 12px; overflow: hidden; border: 1px solid #1e1e1e;">
+        <video
+          src="/blog/demo.mp4"
+          autoplay
+          loop
+          muted
+          playsinline
+          style="width: 100%; display: block;"
+        ></video>
+      </div>
+
+      <p>
+        The thinking steps are visible. The sources are cited. And the answer is correct — verified against ground truth across multiple agency datasets. No hallucination. No hedging. No "please consult official sources."
+      </p>
+
+      <!-- Pull quote 2 -->
+      <div class="pull-quote">
+        "0 frontier LLMs can answer a question that crosses NJ agency silos. Kurious can — in under 10 seconds."
+      </div>
+
+      <!-- Section 5 — Stats -->
+      <h2>The numbers</h2>
+
+      <!-- Stats grid -->
+      <div style="display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin: 40px 0;">
+        <div style="padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid #1e1e1e; border-radius: 12px; text-align: center;">
+          <span class="stat-num">85M+</span>
+          <span style="font-size: 12px; color: #555;">Records indexed</span>
+        </div>
+        <div style="padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid #1e1e1e; border-radius: 12px; text-align: center;">
+          <span class="stat-num">789</span>
+          <span style="font-size: 12px; color: #555;">Data sources</span>
+        </div>
+        <div style="padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid #1e1e1e; border-radius: 12px; text-align: center;">
+          <span class="stat-num">23K+</span>
+          <span style="font-size: 12px; color: #555;">PDFs with embedded images</span>
+        </div>
+        <div style="padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid #1e1e1e; border-radius: 12px; text-align: center;">
+          <span class="stat-num">23</span>
+          <span style="font-size: 12px; color: #555;">Government agencies</span>
+        </div>
+        <div style="padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid #1e1e1e; border-radius: 12px; text-align: center;">
+          <span class="stat-num">8+</span>
+          <span style="font-size: 12px; color: #555;">File formats</span>
+        </div>
+        <div style="padding: 20px; background: rgba(239,68,68,0.04); border: 1px solid rgba(239,68,68,0.2); border-radius: 12px; text-align: center;">
+          <span class="stat-num" style="color: #ef4444;">0</span>
+          <span style="font-size: 12px; color: #555;">Frontier LLMs that can handle it</span>
+        </div>
+      </div>
+
+      <!-- Section 6 -->
+      <h2>Why this matters beyond New Jersey</h2>
+
+      <p>
+        New Jersey is not a special case. It is a representative case. Every state government, every hospital network, every enterprise with more than a decade of data history is sitting on the same problem: massive, fragmented, heterogeneous data that no AI system has ever been able to navigate.
+      </p>
+
+      <p>
+        The opportunity is not in building a better chatbot. It is in making the data that already exists — that organizations have spent decades and billions collecting — finally useful to the AI systems being deployed on top of it.
+      </p>
+
+      <p>
+        That is what Kurious does. And NJ Open Data is just the first proof point.
+      </p>
+
+      <!-- CTA -->
+      <div style="margin: 64px 0; padding: 40px; background: rgba(0,212,255,0.05); border: 1px solid rgba(0,212,255,0.2); border-radius: 16px; text-align: center;">
+        <h3 style="font-size: 22px; font-weight: 700; color: #ffffff; margin: 0 0 10px;">Try it yourself</h3>
+        <p style="color: #a3a3a3; font-size: 14px; margin: 0 0 28px;">Ask anything about NJ Open Data. Live and ungated.</p>
+        <a href="https://njopendata.aintropy.ai/chat" target="_blank" rel="noopener noreferrer"
+           style="display: inline-block; background: #00d4ff; color: #0a0a0a; padding: 14px 40px; border-radius: 8px; font-size: 16px; font-weight: 700; text-decoration: none; margin-bottom: 32px;">
+          Open Kurious →
+        </a>
+        <div style="display: flex; align-items: center; justify-content: center; gap: 20px;">
+          <img src="/public/qr.png" alt="QR code" style="width: 80px; height: 80px; border-radius: 8px;" onerror="this.style.display='none'" />
+          <div style="text-align: left;">
+            <div style="font-size: 13px; color: #a3a3a3;">Or scan to open on your phone</div>
+            <div style="font-size: 12px; color: #555; margin-top: 2px;">njopendata.aintropy.ai</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Author bio -->
+      <div style="padding: 24px; border: 1px solid #1e1e1e; border-radius: 12px; display: flex; align-items: center; gap: 20px; margin-top: 64px;">
+        <div style="width: 56px; height: 56px; border-radius: 50%; background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0;">🤖</div>
+        <div>
+          <div style="font-size: 14px; font-weight: 700; color: #ffffff; margin-bottom: 4px;">AIntropy</div>
+          <div style="font-size: 13px; color: #a3a3a3; line-height: 1.5;">The hippocampus of your private AI. Building systems that make institutional data finally visible to AI.</div>
+          <a href="https://aintropy.ai" target="_blank" rel="noopener noreferrer" style="font-size: 12px; color: #00d4ff; text-decoration: none; margin-top: 6px; display: inline-block;">aintropy.ai →</a>
+        </div>
+      </div>
+
+    </div>
+  </article>
+
+  <!-- Footer -->
+  <footer style="border-top: 1px solid #1a1a1a; padding: 32px; text-align: center; font-size: 13px; color: #555;">
+    <div>© 2026 AIntropy. The Hippocampus of Your Private AI.</div>
+    <div style="margin-top: 8px;">
+      <a href="/index.html" style="color: #555; text-decoration: none; margin: 0 12px;">Home</a>
+      <a href="/blog.html" style="color: #555; text-decoration: none; margin: 0 12px;">Blog</a>
+      <a href="/nj_demo.html" style="color: #555; text-decoration: none; margin: 0 12px;">NJ Demo</a>
+      <a href="mailto:help@aintropy.ai" style="color: #555; text-decoration: none; margin: 0 12px;">Contact</a>
+    </div>
+  </footer>
+
+</body>
+</html>

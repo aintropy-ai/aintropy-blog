@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — AIntropy</title>
+  <meta name="description" content="Insights from the team building Kurious — AI that can finally see your data." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Blog — AIntropy" />
+  <meta property="og:description" content="Insights from the team building Kurious — AI that can finally see your data." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="AIntropy" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      background-color: #0a0a0a;
+      color: #e5e5e5;
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .card-hover {
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .card-hover:hover {
+      border-color: #00d4ff;
+      transform: translateY(-2px);
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 20px;
+      border: 1px solid #2a2a2a;
+      color: #a0a0a0;
+    }
+
+    .tag-product { border-color: #00d4ff33; color: #00d4ff; }
+    .tag-research { border-color: #a78bfa33; color: #a78bfa; }
+    .tag-data { border-color: #34d39933; color: #34d399; }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav style="border-bottom: 1px solid #1a1a1a; padding: 0 32px; height: 56px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; background: #0a0a0a; z-index: 30;">
+    <a href="/index.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
+      <img src="/logo.png" alt="AIntropy" style="height: 28px; width: auto;" />
+      <span style="font-size: 15px; font-weight: 600; color: #fff;">AIntropy</span>
+      <span style="font-size: 11px; color: #555; margin-left: 2px;">alpha</span>
+    </a>
+    <div style="display: flex; align-items: center; gap: 24px;">
+      <a href="/index.html" style="font-size: 14px; color: #a0a0a0; text-decoration: none;">Home</a>
+      <a href="/nj_demo.html" style="font-size: 14px; color: #a0a0a0; text-decoration: none;">NJ Demo</a>
+      <a href="https://njopendata.aintropy.ai/chat" target="_blank" rel="noopener noreferrer" style="font-size: 13px; font-weight: 600; color: #0a0a0a; background: #00d4ff; padding: 8px 18px; border-radius: 6px; text-decoration: none;">Try Kurious →</a>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <div style="max-width: 860px; margin: 0 auto; padding: 64px 32px 48px;">
+    <p style="font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: #00d4ff; margin-bottom: 16px;">The AIntropy Blog</p>
+    <h1 style="font-size: 40px; font-weight: 800; color: #fff; letter-spacing: -1px; line-height: 1.15; margin-bottom: 16px;">
+      From the team building<br/>AI that can see your data.
+    </h1>
+    <p style="font-size: 17px; color: #a0a0a0; max-width: 560px; line-height: 1.65;">
+      Research, product thinking, and field notes from the people at AIntropy.
+    </p>
+  </div>
+
+  <!-- Divider -->
+  <div style="max-width: 860px; margin: 0 auto; padding: 0 32px;">
+    <div style="border-top: 1px solid #1a1a1a;"></div>
+  </div>
+
+  <!-- Blog Posts Grid -->
+  <div style="max-width: 860px; margin: 0 auto; padding: 48px 32px 80px;">
+
+    <!-- Featured post -->
+    <div style="margin-bottom: 16px;">
+      <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; color: #555;">Latest</span>
+    </div>
+
+    <a href="/blog/nj-open-data.html" style="text-decoration: none; display: block;">
+      <div class="card-hover" style="background: #111; border: 1px solid #1e1e1e; border-radius: 16px; padding: 36px; margin-bottom: 48px;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+          <span class="tag tag-product">Product</span>
+          <span class="tag tag-data">Data</span>
+          <span style="font-size: 12px; color: #555; margin-left: 4px;">March 2026 · 8 min read</span>
+        </div>
+        <h2 style="font-size: 26px; font-weight: 700; color: #fff; letter-spacing: -0.4px; line-height: 1.25; margin-bottom: 14px;">
+          Your AI Has Never Seen Your Data
+        </h2>
+        <p style="font-size: 15px; color: #a0a0a0; line-height: 1.65; margin-bottom: 24px; max-width: 600px;">
+          85 million government records. 23 agencies. 8 formats. Every frontier model you know — GPT, Gemini, Claude — sees none of it. Here is why, and what we built to fix it.
+        </p>
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <div style="width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, #00d4ff, #0891b2); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: #0a0a0a;">A</div>
+          <span style="font-size: 13px; color: #777;">AIntropy Research Team</span>
+          <span style="font-size: 13px; color: #00d4ff; margin-left: auto;">Read →</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Coming soon placeholder posts -->
+    <div style="margin-bottom: 16px;">
+      <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; color: #555;">Coming soon</span>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+
+      <div style="background: #0d0d0d; border: 1px dashed #1e1e1e; border-radius: 12px; padding: 28px; opacity: 0.6;">
+        <div style="margin-bottom: 14px;">
+          <span class="tag tag-research">Research</span>
+        </div>
+        <h3 style="font-size: 17px; font-weight: 600; color: #777; line-height: 1.3; margin-bottom: 10px;">
+          Why Context Windows Are Not the Answer to Enterprise Data
+        </h3>
+        <p style="font-size: 13px; color: #555; line-height: 1.6;">
+          Bigger isn't better when the data was never in the prompt to begin with.
+        </p>
+      </div>
+
+      <div style="background: #0d0d0d; border: 1px dashed #1e1e1e; border-radius: 12px; padding: 28px; opacity: 0.6;">
+        <div style="margin-bottom: 14px;">
+          <span class="tag tag-product">Product</span>
+        </div>
+        <h3 style="font-size: 17px; font-weight: 600; color: #777; line-height: 1.3; margin-bottom: 10px;">
+          Multimodal Retrieval: How Kurious Reads a PDF Like a Human
+        </h3>
+        <p style="font-size: 13px; color: #555; line-height: 1.6;">
+          Tables, bounding boxes, embedded images — the real content hides between lines of text.
+        </p>
+      </div>
+
+      <div style="background: #0d0d0d; border: 1px dashed #1e1e1e; border-radius: 12px; padding: 28px; opacity: 0.6;">
+        <div style="margin-bottom: 14px;">
+          <span class="tag tag-data">Data</span>
+        </div>
+        <h3 style="font-size: 17px; font-weight: 600; color: #777; line-height: 1.3; margin-bottom: 10px;">
+          Cross-Agency Data: What 23 Government Silos Have in Common
+        </h3>
+        <p style="font-size: 13px; color: #555; line-height: 1.6;">
+          The patterns no analyst has ever seen — because the tools never let you look.
+        </p>
+      </div>
+
+      <div style="background: #0d0d0d; border: 1px dashed #1e1e1e; border-radius: 12px; padding: 28px; opacity: 0.6;">
+        <div style="margin-bottom: 14px;">
+          <span class="tag tag-research">Research</span>
+        </div>
+        <h3 style="font-size: 17px; font-weight: 600; color: #777; line-height: 1.3; margin-bottom: 10px;">
+          Building Trust into AI Answers: The Provenance Problem
+        </h3>
+        <p style="font-size: 13px; color: #555; line-height: 1.6;">
+          Every answer Kurious gives is traceable to the exact source, row, timestamp, or bounding box.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- CTA -->
+  <div style="border-top: 1px solid #1a1a1a; padding: 64px 32px; text-align: center;">
+    <p style="font-size: 13px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; color: #555; margin-bottom: 16px;">Live demo</p>
+    <h2 style="font-size: 28px; font-weight: 700; color: #fff; letter-spacing: -0.5px; margin-bottom: 12px;">See Kurious answer questions<br/>no other model can.</h2>
+    <p style="font-size: 15px; color: #a0a0a0; margin-bottom: 32px;">85M+ records from NJ Open Data. Live. Ask anything.</p>
+    <a href="https://njopendata.aintropy.ai/chat" target="_blank" rel="noopener noreferrer" style="display: inline-block; background: #00d4ff; color: #0a0a0a; padding: 14px 32px; border-radius: 8px; font-size: 14px; font-weight: 700; text-decoration: none; letter-spacing: 0.2px;">
+      Try Kurious →
+    </a>
+  </div>
+
+  <!-- Footer -->
+  <footer style="border-top: 1px solid #111; padding: 24px 32px; text-align: center; font-size: 12px; color: #444; line-height: 1.8;">
+    <div>
+      <a href="/index.html" style="color: #555; text-decoration: none; margin: 0 12px;">Home</a>
+      <a href="/nj_demo.html" style="color: #555; text-decoration: none; margin: 0 12px;">NJ Demo</a>
+      <a href="/blog.html" style="color: #555; text-decoration: none; margin: 0 12px;">Blog</a>
+      <a href="mailto:help@aintropy.ai" style="color: #555; text-decoration: none; margin: 0 12px;">Contact</a>
+    </div>
+    <div style="margin-top: 8px;">
+      Underlying technology may be protected by one or more patents pending under USPTO. © 2026 AIntropy.
+    </div>
+  </footer>
+
+</body>
+</html>
